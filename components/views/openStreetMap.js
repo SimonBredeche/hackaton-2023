@@ -17,6 +17,7 @@ export default function MapRender(){
         const width = 2;
         const heigth = 2;
         const ctx = ref.current.getContext('2d');
+        ctx.clearRect(0,0,400,700);
         setLoading(true);
         for(let x = startX; x < width+startX;x++){
             for(let y = startY; y < heigth+startY; y++){
