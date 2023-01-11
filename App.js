@@ -13,7 +13,7 @@ export default function App() {
           <NavigationContainer>
             <Drawer.Navigator
               screenOptions={{
-                headerStatusBarHeight: 30,
+                headerStatusBarHeight: 50,
                 headerShown: true,
                 headerTitleAlign: 'center',
                 headerTitle: 'Ceercles',
@@ -21,7 +21,7 @@ export default function App() {
                   return ( 
                     <Image 
                       source={require('./assets/ceercles.png')}
-                      style={{width: 70, height: 70, marginBottom: '20%'}}
+                      style={{width: 60, height: 60, marginBottom: '15%'}}
                     />
                   )
                 }

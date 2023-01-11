@@ -166,7 +166,7 @@ export default function MapRender(){
     return (
         <TouchableWithoutFeedback  onPress={handleGestureEvent}  >
             <SafeAreaView style={{flex : 1}}>
-                    <Canvas  ref={ref} style={{ width: '100%', height: '73%', backgroundColor: 'black' }}  />
+                    <Canvas  ref={ref} style={{ width: '100%', height: '71%', backgroundColor: 'black' }}  />
                     <View style={[styles.container1,styles.shadowProp]}>
                         <Text style={styles.textSize}> Evenement : {marker.name}</Text>
                         <Text style={styles.textSize}> Nombre de personne : {marker.number} </Text>
