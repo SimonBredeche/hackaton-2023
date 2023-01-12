@@ -1,15 +1,16 @@
 
 import React, { useState,useRef,useEffect  } from 'react';
-import { SafeAreaView,Text,TouchableWithoutFeedback,View } from 'react-native';
+import { SafeAreaView,Text,TouchableWithoutFeedback,View,Image } from 'react-native';
 import Canvas, {Image as CanvasImage} from 'react-native-canvas';
 import { PanGestureHandler,GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Points } from '../fakeData/fakepoint';
 import { styles } from '../styles/globalStyle';
 import { Asset } from 'expo-asset';
+import { Dimensions} from 'react-native'
 import * as mapUtils from '../utils/mapUtils'
 const arrowBoundingBox = {};
-const CANVAS_WIDTH = 400;
-const CANVAS_HEIGHT = 510;
+const CANVAS_WIDTH = Dimensions.get('window').width;
+const CANVAS_HEIGHT = Dimensions.get('window').height * 0.71;
 const markerDefault = {
     'name': '-',
     'number': '-',
@@ -27,8 +28,8 @@ export default function MapRender(){
     const [loading,setLoading] = useState(false);
 
     async function loadMap(){
-        const width = 2;
-        const heigth = 2;
+        const width = 3;
+        const heigth = 3;
         const ctx = ref.current.getContext('2d');
         ctx.clearRect(0,0,400,700);
         setLoading(true);
@@ -124,13 +125,17 @@ export default function MapRender(){
         const ctx = ref.current.getContext('2d');
         boundingBox.forEach(rectangle => {
             if(mapUtils.isColliding(rectangle,clientX,clientY)){
+                let marketTemp  = rectangle.marker;
                 if(marker.offSetX == '-' && marker.offSetY == '-'){
                     drawMarker(rectangle.marker,ctx,true)
+                }else if(marker.offSetX == rectangle.marker.offSetX && marker.offSetY == rectangle.marker.offSetY){
+                    drawMarker(marker,ctx,false)
+                    marketTemp = markerDefault;
                 }else{
                     drawMarker(marker,ctx,false)
                     drawMarker(rectangle.marker,ctx,true)
                 }
-                setMarker(rectangle.marker);
+                setMarker(marketTemp);
             }
         });
         if(mapUtils.isColliding(arrowBoundingBox.left,clientX,clientY)){
@@ -155,22 +160,36 @@ export default function MapRender(){
     useEffect(() => {
         if (ref.current) {
           const ctx = ref.current.getContext('2d');
-          ctx.canvas.height = 800;
-          ctx.canvas.width = 400;
+          ctx.canvas.height = CANVAS_HEIGHT;
+          ctx.canvas.width = CANVAS_WIDTH;
           if (ctx) {
             loadMap();
           }
         }
       }, [ref,startX,startY]);
+
+    function EventBox(props){
+        const marker = props.marker;
+        if(marker.name == '-'){
+            return '';
+        }
+        return (
+            <View style={[styles.container1,styles.shadowProp]}>
+                <Image
+                        style={{width:100,height:100}}
+                        source={marker.image}
+                />
+                <Text style={styles.textSize}> Evenement : {marker.name}</Text>
+                <Text style={styles.textSize}> Nombre de personne : {marker.number} </Text>
+            </View>
+        )
+    }
     
     return (
         <TouchableWithoutFeedback  onPress={handleGestureEvent}  >
             <SafeAreaView style={{flex : 1}}>
-                    <Canvas  ref={ref} style={{ width: '100%', height: '71%', backgroundColor: 'black' }}  />
-                    <View style={[styles.container1,styles.shadowProp]}>
-                        <Text style={styles.textSize}> Evenement : {marker.name}</Text>
-                        <Text style={styles.textSize}> Nombre de personne : {marker.number} </Text>
-                    </View>
+                    <Canvas  ref={ref} style={{ width: '100%', backgroundColor: 'black' }}  />
+                    <EventBox marker={marker}></EventBox>
             </SafeAreaView>
         </TouchableWithoutFeedback >
 

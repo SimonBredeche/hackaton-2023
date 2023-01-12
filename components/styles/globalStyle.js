@@ -21,13 +21,14 @@ export const styles = StyleSheet.create({
     container1:{
         backgroundColor: 'white',
         borderRadius: 8,
-        paddingVertical: 45,
+        paddingVertical: 20,
         paddingHorizontal: 25,
         width: '90%',
         marginLeft: 'auto',
         marginRight: 'auto',
         marginVertical: 10,
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
         
     },
     container2:{
