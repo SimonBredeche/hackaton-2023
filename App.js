@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Image } from 'react-native';
+import Home from './components/views/home';
 import MapRender from './components/views/openStreetMap';
 import LoginForm from './components/views/login';
 import SignInForm from './components/views/sign-in';
@@ -27,6 +28,7 @@ export default function App() {
                 }
               }}
             >
+              <Drawer.Screen name="Home" component={Home} />
               <Drawer.Screen name="Map view" component={MapRender} />
               <Drawer.Screen name="Login" component={LoginForm} />
               <Drawer.Screen name="Sign-in" component={SignInForm} />
