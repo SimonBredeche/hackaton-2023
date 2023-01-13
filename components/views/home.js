@@ -1,6 +1,9 @@
 import { ImageBackground, StyleSheet, Text, View, Pressable, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export default function Home() {
+    const navigation = useNavigation();
+
     const styles = StyleSheet.create({
         image: {
             flex: 1,
@@ -36,14 +39,13 @@ export default function Home() {
         }
     });
 
-
     return (
         <ImageBackground source={require("../../assets/background-login.png")} resizeMode="cover" style={styles.image}>
             <View style={styles.btnDiv}>
-                <Pressable style={styles.btnLog} onPress={() => Alert.alert('Log In button pressed')}>
+                <Pressable style={styles.btnLog} onPress={() => navigation.navigate('Login')}>
                     <Text style={styles.btnText}>Log In</Text>
                 </Pressable>
-                <Pressable style={styles.btnSign} onPress={() => Alert.alert('Sign Up button pressed')}>
+                <Pressable style={styles.btnSign} onPress={() => navigation.navigate('Sign-in')}>
                     <Text style={styles.btnText}>Sign Up</Text>
                 </Pressable>
             </View>
