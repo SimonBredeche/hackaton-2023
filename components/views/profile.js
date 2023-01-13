@@ -166,12 +166,12 @@ export default function Profile() {
                             <TextInput
                                 style={styles.input}
                                 placeholder="First name"
-                                value="Roy"
+                                value="Gustavo"
                             />
                             <TextInput
                                 style={styles.input}
                                 placeholder="Last name"
-                                value="Batty"
+                                value="Fring"
                             />
                         </View>
                         <View style={styles.container4}>
