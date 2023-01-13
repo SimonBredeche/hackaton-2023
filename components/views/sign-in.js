@@ -1,6 +1,34 @@
 import { ImageBackground, StyleSheet, Text, View, Pressable, Alert, TextInput } from 'react-native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SignInForm() {
+    const [textInputEmail, setTextInputEmail] = useState('');
+    const [textInputName, setTextInputNamel] = useState('');
+    const [textInputPass, setTextInputPass] = useState('');
+    const [textInputCoPass, setTextInpuCotPass] = useState('');
+    const navigation = useNavigation();
+
+    const checkTextInput = () => {
+        if (!textInputEmail.trim()) {
+            alert('Please Enter Email');
+            return;
+        }
+        if (!textInputName.trim()) {
+            alert('Please Enter Name');
+            return;
+        }
+        if (!textInputPass.trim()) {
+            alert('Please Enter Password');
+            return;
+        }
+        if (!textInputCoPass.trim()) {
+            alert('Please Enter Confirm Password');
+            return;
+        }
+        navigation.navigate('Profile')
+    };
+
     const styles = StyleSheet.create({
         image: {
             flex: 1,
@@ -32,6 +60,15 @@ export default function SignInForm() {
             marginBottom: "6%",
             padding: "5%",
         },
+        inputred: {
+            backgroundColor: "white",
+            opacity: 0.93,
+            borderRadius: 30,
+            marginBottom: "6%",
+            padding: "5%",
+            borderWidth: 2,
+            borderColor: "red",
+        },
         textnoacc: {
             fontSize: 15,
             fontWeight: "bold",
@@ -45,25 +82,25 @@ export default function SignInForm() {
         <ImageBackground source={require("../../assets/background-login.png")} resizeMode="cover" style={styles.image}>
             <View style={styles.div}>
                 <TextInput
-                    style={styles.input}
+                    style={!textInputEmail.trim() ? styles.inputred : styles.input}
                     placeholder="Enter your email"
                 />
                 <TextInput
-                    style={styles.input}
+                    style={!textInputName.trim() ? styles.inputred : styles.input}
                     placeholder="Enter a username"
                 />
                 <TextInput
-                    style={styles.input}
+                    style={!textInputPass.trim() ? styles.inputred : styles.input}
                     placeholder="Enter a password"
                 />
                 <TextInput
-                    style={styles.input}
+                    style={!textInputCoPass.trim() ? styles.inputred : styles.input}
                     placeholder="Confirm password"
                 />
-                <Pressable style={styles.btnSign} onPress={() => Alert.alert('Sign Up button pressed')}>
+                <Pressable style={styles.btnSign} onPress={checkTextInput}>
                     <Text style={styles.btnText}>Sign Up</Text>
                 </Pressable>
-                <Text style={styles.textnoacc}>Already have an account? <Text style={{ color: "blue" }}>Log In</Text></Text>
+                <Text style={styles.textnoacc}>Already have an account? <Text style={{ color: "blue" }} onPress={() => navigation.navigate('Login')}>Log In</Text></Text>
             </View>
         </ImageBackground>
     )
