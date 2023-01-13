@@ -42,18 +42,18 @@ export default function Profile() {
             marginBottom: "4%"
         },
         titleh1: {
-            fontSize: 26,
+            fontSize: 40,
             fontWeight: "bold",
             color: "black",
         },
         titleh2: {
-            fontSize: 22,
+            fontSize: 28,
             color: "black",
             textAlign: "center"
         },
         imagepic: {
-            width: 100,
-            height: 100,
+            width: 150,
+            height: 150,
             resizeMode: "contain"
         },
         container2: {
@@ -68,6 +68,7 @@ export default function Profile() {
         },
         input: {
             backgroundColor: "white",
+            fontSize: 22,
             opacity: 0.93,
             borderRadius: 10,
             marginBottom: "3%",
@@ -103,6 +104,7 @@ export default function Profile() {
             color: "black",
             textAlign: "center",
             fontWeight: "bold",
+            fontSize: 22
         },
         container5: {
             display: "flex",
@@ -127,6 +129,9 @@ export default function Profile() {
             fontWeight: "bold",
             textAlign: "center",
         },
+        texttext: {
+            fontSize: 22
+        }
     });
 
     function ItemInterset() {
@@ -150,15 +155,15 @@ export default function Profile() {
                     <View style={styles.container0}>
                         <View style={styles.container1}>
                             <Text style={styles.titleh1}>Profile details</Text>
-                            <Text>Update your profile with your information.</Text>
+                            <Text style={styles.texttext}>Update your profile with your information.</Text>
                         </View>
                         <View style={styles.container2}>
                             <View style={styles.container21}>
-                                <Text style={styles.titleh2} width="100">Picture</Text>
+                                <Text style={styles.titleh2} width="150">Picture</Text>
                                 <Image source={require("../../assets/picture.png")} style={styles.imagepic}></Image>
                             </View>
                             <View style={styles.container21}>
-                                <Text style={styles.titleh2} width="100">Avatar</Text>
+                                <Text style={styles.titleh2} width="150">Avatar</Text>
                                 <Image source={require("../../assets/avatar.png")} style={styles.imagepic}></Image>
                             </View>
                         </View>
@@ -176,7 +181,7 @@ export default function Profile() {
                         </View>
                         <View style={styles.container4}>
                             <Text style={styles.titleh1}>Your interests</Text>
-                            <Text>Select a few of your interests and let everyone know what you're passionate about.</Text>
+                            <Text style={styles.texttext}>Select a few of your interests and let everyone know what you're passionate about.</Text>
                         </View>
                         <View style={styles.container5}>
                             <ItemInterset></ItemInterset>

@@ -55,6 +55,7 @@ export default function SignInForm() {
         },
         input: {
             backgroundColor: "white",
+            fontSize: 22,
             opacity: 0.93,
             borderRadius: 30,
             marginBottom: "6%",
@@ -62,6 +63,7 @@ export default function SignInForm() {
         },
         inputred: {
             backgroundColor: "white",
+            fontSize: 22,
             opacity: 0.93,
             borderRadius: 30,
             marginBottom: "6%",
@@ -84,18 +86,30 @@ export default function SignInForm() {
                 <TextInput
                     style={!textInputEmail.trim() ? styles.inputred : styles.input}
                     placeholder="Enter your email"
+                    onChangeText={
+                        (value) => setTextInputEmail(value)
+                    }
                 />
                 <TextInput
                     style={!textInputName.trim() ? styles.inputred : styles.input}
                     placeholder="Enter a username"
+                    onChangeText={
+                        (value) => setTextInputNamel(value)
+                    }
                 />
                 <TextInput
                     style={!textInputPass.trim() ? styles.inputred : styles.input}
                     placeholder="Enter a password"
+                    onChangeText={
+                        (value) => setTextInputPass(value)
+                    }
                 />
                 <TextInput
                     style={!textInputCoPass.trim() ? styles.inputred : styles.input}
                     placeholder="Confirm password"
+                    onChangeText={
+                        (value) => setTextInpuCotPass(value)
+                    }
                 />
                 <Pressable style={styles.btnSign} onPress={checkTextInput}>
                     <Text style={styles.btnText}>Sign Up</Text>

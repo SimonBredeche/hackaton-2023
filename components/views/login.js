@@ -45,6 +45,7 @@ export default function LogInForm() {
         },
         input: {
             backgroundColor: "white",
+            fontSize: 22,
             opacity: 0.93,
             borderRadius: 30,
             marginBottom: "6%",
